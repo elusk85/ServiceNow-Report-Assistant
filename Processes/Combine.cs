@@ -9,23 +9,21 @@ namespace ServiceNow_Report_Assistant.Processes
     {
         public void CombineFiles(string command)
         {
-           var parts = command.Split(' ');
-            //if (parts.Length != 5)
-            //{
-            //    Console.WriteLine("Command not valid, Combine requires the name of both reports (including file extension), their corresponding paths, and the type of report for formatting.");
-            //    return;
-            //}
-            var name1 = parts[1];
-            var path1 = parts[2];
-            var name2 = parts[3];
-            var path2 = parts[4];
-            var type = parts[5].ToLower();
+            var parts = command.Split(',');
+            if (parts.Length != 3)
+            {
+                Console.WriteLine("Command not valid, Combine requires the name of both reports (including name and file extension) and the type of report for formatting.");
+                return;
+            }
+            var file1 = parts[1];
+            var file2 = parts[2];
+            //var type = parts[3].ToLower();
 
-            var files = new string[] { @"P:\second.xlsx", @"P:\second.xlsx" };
+            var files = new string[] { file1, file2 };
 
-            var resultFile = @"P:\result.xlsx";
+            var resultFile = @"C:\Users\elusk\Desktop\result.xlsx";
 
-            ExcelPackage masterPackage = new ExcelPackage(new FileInfo(@"P:\first.xlsx"));
+            ExcelPackage masterPackage = new ExcelPackage(new FileInfo(resultFile));
             foreach (var file in files)
             {
                 ExcelPackage pckg = new ExcelPackage(new FileInfo(file));
@@ -49,6 +47,7 @@ namespace ServiceNow_Report_Assistant.Processes
             }
 
             masterPackage.SaveAs(new FileInfo(resultFile));
+            Console.WriteLine("File created");
         }
 
     }
