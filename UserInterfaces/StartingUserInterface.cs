@@ -1,4 +1,5 @@
 ﻿using ServiceNow_Report_Assistant.WorkBooks;
+using ServiceNow_Report_Assistant.Processes;
 using System;
 
 
@@ -33,18 +34,9 @@ namespace ServiceNow_Report_Assistant.UserInterfaces
 
         public static void CombineCommand(string command)
         {
-            var parts = command.Split(' ');
-            //if (parts.Length != 5)
-            //{
-            //    Console.WriteLine("Command not valid, Combine requires the name of both reports, their corresponding paths, and the type of report for formatting.");
-            //    return;
-            //}
-            var name1 = parts[1];
-            var path1 = parts[2];
-            var name2 = parts[3];
-            var path2 = parts[4];
-            var type = parts[5].ToLower();
-            
+            Combine combine = new Combine();
+            combine.CombineFiles(command);
+
             //BasicReport basereport;
             //if (type == "Asset")
             //    basereport = new AssetReport(name, path);
@@ -55,7 +47,7 @@ namespace ServiceNow_Report_Assistant.UserInterfaces
             //    Console.WriteLine("{0} is not a supported type of report, please try again.", type);
             //    return;
             //}
-            Console.WriteLine("Created report {0}.", name1);
+            //Console.WriteLine("Created report {0}.", name1);
             //AssistantUserInterface.CommandLoop(gradeBook);
         }
 
