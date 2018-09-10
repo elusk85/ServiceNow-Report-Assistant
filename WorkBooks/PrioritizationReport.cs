@@ -5,21 +5,18 @@ using ServiceNow_Report_Assistant.Enums;
 using System.IO;
 
 
-namespace ServiceNow_Report_Assistant.Workbooks
+namespace ServiceNow_Report_Assistant.WorkBooks
 {
-    class PrioritizationReport
+    public class PrioritizationReport:BasicReport
     {
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public WorkBookType Type { get; set; }
 
-        public PrioritizationReport(string name, string path)
+        public PrioritizationReport(string name, string path) : base(name, path)
         {
             Name = name;
             Path = Path;
         }
 
-        public static void ReadReport(string path)
+        public override void ReadReport(string path)
         {
             FileInfo existingFile = new FileInfo(path);
 
