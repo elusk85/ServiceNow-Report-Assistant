@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceNow_Report_Assistant.WorkBooks;
+using System;
 
 
 namespace ServiceNow_Report_Assistant.UserInterfaces
@@ -18,9 +19,9 @@ namespace ServiceNow_Report_Assistant.UserInterfaces
 
         public static void CommandRoute(string command)
         {
-            if (command.StartsWith("format"))
+            if (command.StartsWith("combine"))
                 CombineCommand(command);
-            else if (command.StartsWith("combine"))
+            else if (command.StartsWith("format"))
                 FormatCommand(command);
             else if (command == "help")
                 HelpCommand();
@@ -33,11 +34,29 @@ namespace ServiceNow_Report_Assistant.UserInterfaces
         public static void CombineCommand(string command)
         {
             var parts = command.Split(' ');
-            if (parts.Length != 4)
-            {
-                Console.WriteLine("Command not valid, Combine requires 2 or more names and the type of report for formatting.");
-                return;
-            }
+            //if (parts.Length != 5)
+            //{
+            //    Console.WriteLine("Command not valid, Combine requires the name of both reports, their corresponding paths, and the type of report for formatting.");
+            //    return;
+            //}
+            var name1 = parts[1];
+            var path1 = parts[2];
+            var name2 = parts[3];
+            var path2 = parts[4];
+            var type = parts[5].ToLower();
+            
+            //BasicReport basereport;
+            //if (type == "Asset")
+            //    basereport = new AssetReport(name, path);
+            //else if (type == "CAB")
+            //    basereport = new CABReport(name, path);
+            //else
+            //{
+            //    Console.WriteLine("{0} is not a supported type of report, please try again.", type);
+            //    return;
+            //}
+            Console.WriteLine("Created report {0}.", name1);
+            //AssistantUserInterface.CommandLoop(gradeBook);
         }
 
         public static void FormatCommand(string command)
@@ -54,7 +73,7 @@ namespace ServiceNow_Report_Assistant.UserInterfaces
         {
             Console.WriteLine("Report Assistant accepts the following commands:");
             Console.WriteLine();
-            Console.WriteLine("Combine 'Name1' 'Name2' 'Type' - Combines 2 or more reports. The type field determines the formatting of the result.");
+            Console.WriteLine("Combine 'Name1' 'Path1 'Name2' 'Path2' 'Type' - Combines 2 or more reports. The type field determines the formatting of the result.");
             Console.WriteLine();
             Console.WriteLine("Format 'Name' - Formats the report with the provided 'Name'.");
             Console.WriteLine();

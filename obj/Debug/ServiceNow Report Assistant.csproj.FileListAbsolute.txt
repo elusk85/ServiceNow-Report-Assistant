@@ -8,3 +8,12 @@ C:\Users\elusk\source\repos\ServiceNow Report Assistant\ServiceNow Report Assist
 C:\Users\elusk\source\repos\ServiceNow Report Assistant\ServiceNow Report Assistant\obj\Debug\ServiceNow Report Assistant.csproj.CopyComplete
 C:\Users\elusk\source\repos\ServiceNow Report Assistant\ServiceNow Report Assistant\obj\Debug\ServiceNow Report Assistant.exe
 C:\Users\elusk\source\repos\ServiceNow Report Assistant\ServiceNow Report Assistant\obj\Debug\ServiceNow Report Assistant.pdb
+C:\Users\elusk\source\repos\ServiceNow-Report-Assistant\bin\Debug\ServiceNow Report Assistant.exe.config
+C:\Users\elusk\source\repos\ServiceNow-Report-Assistant\bin\Debug\ServiceNow Report Assistant.exe
+C:\Users\elusk\source\repos\ServiceNow-Report-Assistant\bin\Debug\ServiceNow Report Assistant.pdb
+C:\Users\elusk\source\repos\ServiceNow-Report-Assistant\bin\Debug\EPPlus.xml
+C:\Users\elusk\source\repos\ServiceNow-Report-Assistant\obj\Debug\ServiceNow Report Assistant.csprojAssemblyReference.cache
+C:\Users\elusk\source\repos\ServiceNow-Report-Assistant\obj\Debug\ServiceNow Report Assistant.csproj.CoreCompileInputs.cache
+C:\Users\elusk\source\repos\ServiceNow-Report-Assistant\obj\Debug\ServiceNow Report Assistant.csproj.CopyComplete
+C:\Users\elusk\source\repos\ServiceNow-Report-Assistant\obj\Debug\ServiceNow Report Assistant.exe
+C:\Users\elusk\source\repos\ServiceNow-Report-Assistant\obj\Debug\ServiceNow Report Assistant.pdb
