@@ -9,6 +9,7 @@ namespace ServiceNow_Report_Assistant.Processes
     {
         public void CombineFiles(string command)
         {
+            
             var parts = command.Split(',');
             if (parts.Length != 3)
             {
@@ -21,7 +22,7 @@ namespace ServiceNow_Report_Assistant.Processes
 
             var files = new string[] { file1, file2 };
 
-            var resultFile = @"C:\Users\elusk\Desktop\result.xlsx";
+            var resultFile = @"C:\Users\elusk\Desktop\Combined_Report_" + DateTime.Now.ToString("yyyyMMddhhssmmm") + ".xlsx";
 
             ExcelPackage masterPackage = new ExcelPackage(new FileInfo(resultFile));
             foreach (var file in files)
@@ -47,6 +48,7 @@ namespace ServiceNow_Report_Assistant.Processes
             }
 
             masterPackage.SaveAs(new FileInfo(resultFile));
+
             Console.WriteLine("File created");
         }
 
