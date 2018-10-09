@@ -25,41 +25,36 @@ namespace ServiceNow_Report_Assistant.Processes
             var resultFile = @"C:\Users\elusk\Desktop\Combined_Report_" + DateTime.Now.ToString("yyyyMMddhhssmmm") + ".xlsx";
 
             ExcelPackage masterPackage = new ExcelPackage(new FileInfo(resultFile));
+            var ws = masterPackage.Workbook.Worksheets.Add("Sheet1"); //possibly not set properly
+            ExcelRangeBase rangeBase = ws.Cells[ 1, 1, ws.Cells.End.Row, ws.Cells.End.Column ];
+
             foreach (var file in files)
             {
                 ExcelPackage pckg = new ExcelPackage(new FileInfo(file));
-                var worksheet = pckg.Workbook.Worksheets[1];
-                masterPackage.Workbook.Worksheets.Add("Sheet1");
-                var finalSheet = masterPackage.Workbook.Worksheets[1];
-                int rowcount = worksheet.Dimension.End.Row;
-                int colcount = worksheet.Dimension.End.Column;
-                int resultFinalRow = finalSheet.Dimension.End.Row;//apparently getting set to null
-                int resultFinalCol = finalSheet.Dimension.End.Column;//apparently getting set to null
 
-                if (resultFinalRow == 0 && resultFinalCol == 0)
+                foreach (var sheet in pckg.Workbook.Worksheets) //-this section puts the worksheets into a single .xlsx file
                 {
-                    worksheet.Cells[1, colcount].Copy(finalSheet.Cells[1, resultFinalCol]);
-                    worksheet.Cells[1, 2, rowcount, colcount].Copy(finalSheet.Cells[2, resultFinalCol]);
-                }
-                else
-                    worksheet.Cells[1, 2, rowcount, colcount].Copy(finalSheet.Cells[resultFinalRow, resultFinalCol]);
-                
-
-                //foreach (var sheet in pckg.Workbook.Worksheets) //-this section puts the worksheets into a single .xlsx file
-                //{
                     //check name of worksheet, in case that worksheet with same name already exist exception will be thrown by EPPlus
                     //string workSheetName = sheet.Name;
                     //foreach (var masterSheet in masterPackage.Workbook.Worksheets)
                     //{
                     //    if (sheet.Name == masterSheet.Name)
                     //    {
-                    //        workSheetName = string.Format("{0}_{1}", workSheetName, DateTime.Now.ToString("yyyyMMddhhssmmm"));
+                    //        workSheetName = string.Format("Combined", workSheetName, DateTime.Now.ToString("yyyyMMddhhssmmm"));
                     //    }
                     //}
 
-                    //add new sheet
+                    ////add new sheet
                     //masterPackage.Workbook.Worksheets.Add(workSheetName, sheet);
-                //}
+
+                    int rowcount = sheet.Dimension.End.Row;
+                    int colcount = sheet.Dimension.End.Column;
+
+                    sheet.Cells.Copy(rangeBase);//possibly not set properly
+                    
+
+                    
+                }
             }
 
 
