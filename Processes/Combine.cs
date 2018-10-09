@@ -26,7 +26,7 @@ namespace ServiceNow_Report_Assistant.Processes
 
             ExcelPackage masterPackage = new ExcelPackage(new FileInfo(resultFile));
             var ws = masterPackage.Workbook.Worksheets.Add("Sheet1"); //possibly not set properly
-            ExcelRangeBase rangeBase = ws.Cells[ 1, 1, ws.Cells.End.Row, ws.Cells.End.Column ];
+            ExcelRangeBase rangeBase = ws.Cells[1, 1];
 
             foreach (var file in files)
             {
@@ -38,27 +38,21 @@ namespace ServiceNow_Report_Assistant.Processes
                     string workSheetName = sheet.Name;
                     foreach (var masterSheet in masterPackage.Workbook.Worksheets)
                     {
-                        if (sheet.Name == masterSheet.Name)
-                        {
                             int rowcount = sheet.Dimension.End.Row;
                             int colcount = sheet.Dimension.End.Column;
 
-                            sheet.Cells.Copy(rangeBase);//possibly not set properly
-                        }
+                            sheet.Cells[2, 1, rowcount, colcount].Copy(rangeBase);//possibly not set properly
                     }
 
                     //add new sheet if possible
-                    try
-                    {
-                        masterPackage.Workbook.Worksheets.Add(workSheetName, sheet);
-                    }
-                    catch (InvalidOperationException e)
-                    {
-                        Console.WriteLine("Exception: " + e );
-                    }
-
-
-
+                    //try
+                    //{
+                    //    masterPackage.Workbook.Worksheets.Add(workSheetName, sheet);
+                    //}
+                    //catch (InvalidOperationException e)
+                    //{
+                    //    Console.WriteLine("Exception: " + e );
+                    //}
 
                 }
             }
