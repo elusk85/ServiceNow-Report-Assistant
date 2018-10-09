@@ -35,25 +35,31 @@ namespace ServiceNow_Report_Assistant.Processes
                 foreach (var sheet in pckg.Workbook.Worksheets) //-this section puts the worksheets into a single .xlsx file
                 {
                     //check name of worksheet, in case that worksheet with same name already exist exception will be thrown by EPPlus
-                    //string workSheetName = sheet.Name;
-                    //foreach (var masterSheet in masterPackage.Workbook.Worksheets)
-                    //{
-                    //    if (sheet.Name == masterSheet.Name)
-                    //    {
-                    //        workSheetName = string.Format("Combined", workSheetName, DateTime.Now.ToString("yyyyMMddhhssmmm"));
-                    //    }
-                    //}
+                    string workSheetName = sheet.Name;
+                    foreach (var masterSheet in masterPackage.Workbook.Worksheets)
+                    {
+                        if (sheet.Name == masterSheet.Name)
+                        {
+                            int rowcount = sheet.Dimension.End.Row;
+                            int colcount = sheet.Dimension.End.Column;
 
-                    ////add new sheet
-                    //masterPackage.Workbook.Worksheets.Add(workSheetName, sheet);
+                            sheet.Cells.Copy(rangeBase);//possibly not set properly
+                        }
+                    }
 
-                    int rowcount = sheet.Dimension.End.Row;
-                    int colcount = sheet.Dimension.End.Column;
+                    //add new sheet if possible
+                    try
+                    {
+                        masterPackage.Workbook.Worksheets.Add(workSheetName, sheet);
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        Console.WriteLine("Exception: " + e );
+                    }
 
-                    sheet.Cells.Copy(rangeBase);//possibly not set properly
-                    
 
-                    
+
+
                 }
             }
 
